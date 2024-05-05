@@ -1,0 +1,108 @@
+#root {
+  background-color: #1e1b38;
+}
+
+.main-container {
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 84vh;
+}
+
+.container img {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  height: 130px;
+}
+
+.play-button {
+  width: 320px;
+  height: 60px;
+  padding: 10px 20px;
+  font-size: 18px;
+  color: black;
+  font-family:'Courier New', Courier, monospace;
+  font-weight: 900;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  line-height: 40px;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+
+.computer {
+  background-color: #deff84;
+}
+
+.computer:hover {
+  background-color: #c3ff41;
+}
+
+.online {
+  background-color: #ab7a26;
+}
+
+.online:hover {
+  background-color: #8f6010;
+}
+
+.gameContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.grid {
+  margin-top: 100px;
+  display: grid;
+  grid-template-columns: repeat(3, 110px);
+  grid-template-rows: 45px repeat(3, 110px) 45px;
+  gap: 7px;
+  color: white;
+}
+
+.turn {
+  background-color: rgba(0, 0, 0, 0.2);
+  grid-column-start: 1;
+  grid-column-end: 3;
+  border-radius: 5px;
+}
+
+.timer {
+  background-color: rgba(0, 0, 0, 0.2);
+  margin-bottom: 0;
+  border-radius: 5px;
+}
+
+.gridBlock {
+  background-color: #2a3f4d;
+  border-radius: 5px;
+}
+
+.gridBlock:hover {
+  opacity: 80%;
+  cursor: pointer;
+}
+
+.inGameStats {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.giveUp {
+  background-color: rgb(255, 73, 73);
+  border-radius: 5px;
+}
+
+.giveUp:hover {
+  opacity: 80%;
+  cursor: pointer;
+}
