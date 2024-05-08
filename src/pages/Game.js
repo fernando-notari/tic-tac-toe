@@ -1,20 +1,43 @@
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Game() {
-    const params = useParams()
+    const mode = useParams().mode
 
     const [board, setBoard] = useState(Array(9).fill(null)); // game board
     const [xIsNext, setXIsNext] = useState(true); // (true for X, false for O)
+    const [computerMove, setComputerMove] = useState(false);
+
+    useEffect(() => {
+        if (mode === 'computer' && !xIsNext && !calculateWinner(board)) {
+            setComputerMove(true);
+            setTimeout(handleComputerMove, 500);
+        }
+    }, [xIsNext, mode, board]);
 
     const handleClick = (index) => {
+        if (computerMove) {
+            return;
+        }
         if (calculateWinner(board) || board[index]) {
             return;
         }
-        const newBoard = [...board]; // copy the current state
+        const newBoard = [...board];
         newBoard[index] = xIsNext ? 'X' : 'O'; 
         setBoard(newBoard);
-        setXIsNext(!xIsNext); // Toggle the turn
+        setXIsNext(!xIsNext); 
+    };
+
+    const handleComputerMove = () => {
+        let randomIndex;
+        do {
+            randomIndex = Math.floor(Math.random() * 9);
+        } while (board[randomIndex]); 
+        const newBoard = [...board]; 
+        newBoard[randomIndex] = xIsNext ? 'X' : 'O'; 
+        setBoard(newBoard);
+        setXIsNext(!xIsNext);
+        setComputerMove(false);
     };
 
     const calculateWinner = (board) => {
@@ -63,7 +86,7 @@ export default function Game() {
                 <div className="giveUp">Give Up</div>
                 <div className="inGameStats">User</div>
             </div>
-            <p style={{color:"white"}}>Playing against {params.mode}</p>
+            <p style={{color:"white"}}>Playing against {mode}</p>
         </div>
     );
 }
